@@ -13,4 +13,8 @@ sudo ln -sf /etc/nginx/sites-available/kom.conf /etc/nginx/sites-enabled/kom.con
 sudo nginx -t
 sudo systemctl restart nginx
 
+sudo cp upaste.service /lib/systemd/system/upaste.service
+sudo systemctl daemon-reload
+sudo systemctl restart upaste
+
 ./logs.sh

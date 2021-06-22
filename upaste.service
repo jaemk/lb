@@ -1,0 +1,20 @@
+[Unit]
+Description=uPaste App Server
+Requires=nginx.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker exec %n stop
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull docker.jaemk.me/upaste:latest
+ExecStart=/usr/bin/docker run --rm --name %n \
+    --mount source=upastedata,destination=/upaste/db
+    -p 4001:3000 \
+    --env-file /home/james/envs/upaste.env
+    docker.jaemk.me/upaste:latest
+
+[Install]
+WantedBy=multi-user.target
+
