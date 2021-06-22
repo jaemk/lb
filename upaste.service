@@ -6,13 +6,21 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 Restart=always
-ExecStartPre=-/usr/bin/docker exec %n stop
+ExecStop=/usr/bin/docker stop %n
+ExecStop=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull docker.jaemk.me/upaste:latest
-ExecStart=/usr/bin/docker run --rm --name %n \
-    --mount source=upastedata,destination=/upaste/db
+ExecStartPre=/usr/bin/docker run --rm --name %n \
+    --mount source=upastedata,destination=/upaste/db \
     -p 4001:3000 \
-    --env-file /home/james/envs/upaste.env
+    --env-file /home/james/envs/upaste.env \
+    docker.jaemk.me/upaste:latest \
+    ./bin/upaste admin database migrate
+ExecStart=/usr/bin/docker run --rm --name %n \
+    --mount source=upastedata,destination=/upaste/db \
+    -p 4001:3000 \
+    --env-file /home/james/envs/upaste.env \
     docker.jaemk.me/upaste:latest
 
 [Install]
