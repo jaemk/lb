@@ -12,13 +12,13 @@ ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull docker.jaemk.me/upaste:latest
 ExecStartPre=/usr/bin/docker run --rm --name %n \
-    --mount source=upastedata,destination=/upaste/db \
+    -v /mnt/upaste_data/db:/upaste/db \
     -p 4001:3000 \
     --env-file /home/james/envs/upaste.env \
     docker.jaemk.me/upaste:latest \
     ./bin/upaste admin database migrate
 ExecStart=/usr/bin/docker run --rm --name %n \
-    --mount source=upastedata,destination=/upaste/db \
+    -v /mnt/upaste_data/db:/upaste/db \
     -p 4001:3000 \
     --env-file /home/james/envs/upaste.env \
     docker.jaemk.me/upaste:latest
