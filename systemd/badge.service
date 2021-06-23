@@ -1,0 +1,22 @@
+[Unit]
+Description=Badge caching service
+Requires=nginx.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStop=/usr/bin/docker stop %n
+ExecStop=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull docker.jaemk.me/badge-cache:latest
+ExecStart=/usr/bin/docker run --rm --name %n \
+    -v /mnt/badge_cache/data:/badge-cache/cache_dir \
+    -p 4002:3000 \
+    --env-file /home/james/envs/badge-cache.env \
+    docker.jaemk.me/badge-cache:latest
+
+[Install]
+WantedBy=multi-user.target
+

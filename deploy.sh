@@ -19,4 +19,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable upaste
 sudo systemctl restart upaste
 
+sudo cp systemd/badge.service /etc/systemd/system/badge.service
+sudo chmod 644 /etc/systemd/system/badge.service
+sudo systemctl daemon-reload
+sudo systemctl enable badge
+sudo systemctl restart badge
+
 ./logs.sh
