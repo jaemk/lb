@@ -10,7 +10,7 @@ echo "CERTBOT_REMAINING_CHALLENGES: $CERTBOT_REMAINING_CHALLENGES"
 
 su james -c "
 /home/james/bin/doctl compute domain records list $CERTBOT_DOMAIN \
-    | grep $CERTBOT_VALIDATION \
+    | grep -- $CERTBOT_VALIDATION \
     | awk '{print \$1}' \
     | xargs -I {} sh -c '/home/james/bin/doctl compute domain records delete $CERTBOT_DOMAIN {} --force'
 "
