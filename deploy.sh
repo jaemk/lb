@@ -43,13 +43,6 @@ echo "  ALL=$ALL, ALL_SVCS=$ALL_SVCS"
 echo "  SVC=$SVC"
 echo ""
 
-if [[ -f /etc/docker/daemon.json ]]; then
-    echo "docker config already exists"
-else
-    echo "docker config is missing, writing /etc/docker/daemon.json"
-    sudo echo '{"iptables": false, "ip6tables": false}' > /etc/docker/daemon.json
-    sudo systemctl restart docker
-fi
 
 if $RENEW; then
     echo "*** renewing certs..."
