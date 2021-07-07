@@ -77,6 +77,10 @@ function deploy_service {
     set +x
 }
 
+if $ALL || $ALL_SVCS || [[ "$SVC" = "transfer" ]]; then
+    deploy_service "transfer"
+fi
+
 if $ALL || $ALL_SVCS || [[ "$SVC" = "upaste" ]]; then
     deploy_service "upaste"
 fi

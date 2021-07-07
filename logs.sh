@@ -7,8 +7,10 @@ elif [[ "$1" = "badge" ]]; then
     sudo journalctl -fu badge
 elif [[ "$1" = "homepage" ]]; then
     sudo journalctl -fu homepage
+elif [[ "$1" = "transfer" ]]; then
+    sudo journalctl -fu transfer
 elif [[ "$1" = "all" ]]; then
-    sudo journalctl -f -u upaste -u badge -u homepage
+    sudo journalctl -f -u upaste -u badge -u homepage -u transfer
 else
     sudo tail -f /var/log/nginx/access.log
 fi

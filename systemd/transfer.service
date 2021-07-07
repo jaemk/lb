@@ -1,0 +1,28 @@
+[Unit]
+Description=transfer server
+Requires=nginx.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStop=/usr/bin/docker stop %n
+ExecStop=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull docker.jaemk.me/transfer:latest
+ExecStartPre=/usr/bin/docker run --rm --name %n \
+    -v /mnt/transfer_data/uploads:/transfer/uploads \
+    -p 4003:3000 \
+    --env-file /home/james/envs/transfer.env \
+    docker.jaemk.me/transfer:latest \
+    ./bin/transfer admin database migrate
+ExecStart=/usr/bin/docker run --rm --name %n \
+    -v /mnt/transfer_data/uploads:/transfer/uploads \
+    -p 4003:3000 \
+    --env-file /home/james/envs/transfer.env \
+    docker.jaemk.me/transfer:latest
+
+[Install]
+WantedBy=multi-user.target
+
