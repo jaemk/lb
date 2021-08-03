@@ -3,16 +3,24 @@
 set -ex
 
 cmd="$1"
+domain="$2"
 
 if [ "$cmd" = "new" ]; then
-    DOMAIN=kominick.com ./certs/make-cert.sh new
-    DOMAIN=kominick.org ./certs/make-cert.sh new
-    DOMAIN=kominick.dev ./certs/make-cert.sh new
-
+    if [[ -z "$domain" ]]; then
+        DOMAIN=kominick.com ./certs/make-cert.sh new
+        DOMAIN=kominick.org ./certs/make-cert.sh new
+        DOMAIN=kominick.dev ./certs/make-cert.sh new
+    else
+        DOMAIN="$domain" ./certs/make-cert.sh new
+    fi
 elif [ "$cmd" = "renew" ]; then
-    DOMAIN=kominick.com ./certs/make-cert.sh renew
-    DOMAIN=kominick.org ./certs/make-cert.sh renew
-    DOMAIN=kominick.dev ./certs/make-cert.sh renew
+    if [[ -z "$domain" ]]; then
+        DOMAIN=kominick.com ./certs/make-cert.sh renew
+        DOMAIN=kominick.org ./certs/make-cert.sh renew
+        DOMAIN=kominick.dev ./certs/make-cert.sh renew
+    else
+        DOMAIN="$domain" ./certs/make-cert.sh renew
+    fi
 else
     echo "command required"
     echo "  $0 new"
