@@ -12,5 +12,5 @@ elif [[ "$1" = "transfer" ]]; then
 elif [[ "$1" = "all" ]]; then
     sudo journalctl -f -u upaste -u badge -u homepage -u transfer
 else
-    sudo tail -f /var/log/nginx/access.log
+    sudo tail -f /var/log/nginx/access.log -F
 fi
