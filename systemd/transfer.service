@@ -13,13 +13,13 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull docker.jaemk.me/transfer:latest
 ExecStartPre=/usr/bin/docker run --rm --name %n \
     -v /mnt/transfer_data/uploads:/transfer/uploads \
-    -p 4003:3000 \
+    -p 127.0.0.1:4003:3000 \
     --env-file /home/james/envs/transfer.env \
     docker.jaemk.me/transfer:latest \
     ./bin/transfer admin database migrate
 ExecStart=/usr/bin/docker run --rm --name %n \
     -v /mnt/transfer_data/uploads:/transfer/uploads \
-    -p 4003:3000 \
+    -p 127.0.0.1:4003:3000 \
     --env-file /home/james/envs/transfer.env \
     docker.jaemk.me/transfer:latest
 

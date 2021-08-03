@@ -12,7 +12,7 @@ ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull docker.jaemk.me/homepage:latest
 ExecStart=/usr/bin/docker run --rm --name %n \
-    -p 4000:3000 \
+    -p 127.0.0.1:4000:3000 \
     --env-file /home/james/envs/homepage.env \
     docker.jaemk.me/homepage:latest
 
