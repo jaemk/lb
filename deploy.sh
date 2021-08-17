@@ -58,6 +58,7 @@ if $ALL || $LB; then
     sudo cp nginx/kom-ssl-config.conf /etc/nginx/snippets/kom-ssl-config.conf
     sudo cp nginx/kom-org-ssl-config.conf /etc/nginx/snippets/kom-org-ssl-config.conf
     sudo cp nginx/kom-dev-ssl-config.conf /etc/nginx/snippets/kom-dev-ssl-config.conf
+    sudo cp nginx/slackat-ssl-config.conf /etc/nginx/snippets/slackat-ssl-config.conf
     sudo cp nginx/kom.conf /etc/nginx/sites-available/kom.conf
     sudo ln -sf /etc/nginx/sites-available/kom.conf /etc/nginx/sites-enabled/kom.conf
 
@@ -91,6 +92,10 @@ fi
 
 if $ALL || $ALL_SVCS || [[ "$SVC" = "homepage" ]]; then
     deploy_service "homepage"
+fi
+
+if $ALL || $ALL_SVCS || [[ "$SVC" = "slackat" ]]; then
+    deploy_service "slackat"
 fi
 
 if $TAIL; then

@@ -1,16 +1,10 @@
 #!/bin/bash
 
 
-if [[ "$1" = "upaste" ]]; then
-    sudo journalctl -fu upaste
-elif [[ "$1" = "badge" ]]; then
-    sudo journalctl -fu badge
-elif [[ "$1" = "homepage" ]]; then
-    sudo journalctl -fu homepage
-elif [[ "$1" = "transfer" ]]; then
-    sudo journalctl -fu transfer
-elif [[ "$1" = "all" ]]; then
-    sudo journalctl -f -u upaste -u badge -u homepage -u transfer
+if [[ "$1" = "all" ]]; then
+    sudo journalctl -f -u upaste -u badge -u homepage -u transfer -u slackat
+elif [[ -z "$1" ]]; then
+    sudo tail -F -f /var/log/nginx/error.log -f /var/log/nginx/access.log
 else
-    sudo tail -f /var/log/nginx/access.log -F
+    sudo journalctl -fu $1
 fi
