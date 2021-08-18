@@ -1,5 +1,5 @@
 [Unit]
-Description=slackat server
+Description=soundlog server
 Requires=docker.service
 
 [Service]
@@ -9,11 +9,11 @@ ExecStop=/usr/bin/docker stop %n
 ExecStop=-/usr/bin/docker rm %n
 ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull docker.jaemk.me/slackat:latest
+ExecStartPre=/usr/bin/docker pull docker.jaemk.me/soundlog:latest
 ExecStart=/usr/bin/docker run --rm --name %n \
-    -p 127.0.0.1:4004:3000 \
-    --env-file /home/james/envs/slackat.env \
-    docker.jaemk.me/slackat:latest \
+    -p 127.0.0.1:4005:3000 \
+    --env-file /home/james/envs/soundlog.env \
+    docker.jaemk.me/soundlog:latest \
 
 [Install]
 WantedBy=multi-user.target

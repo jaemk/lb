@@ -59,6 +59,7 @@ if $ALL || $LB; then
     sudo cp nginx/kom-org-ssl-config.conf /etc/nginx/snippets/kom-org-ssl-config.conf
     sudo cp nginx/kom-dev-ssl-config.conf /etc/nginx/snippets/kom-dev-ssl-config.conf
     sudo cp nginx/slackat-ssl-config.conf /etc/nginx/snippets/slackat-ssl-config.conf
+    sudo cp nginx/soundlog-ssl-config.conf /etc/nginx/snippets/soundlog-ssl-config.conf
     sudo cp nginx/kom.conf /etc/nginx/sites-available/kom.conf
     sudo ln -sf /etc/nginx/sites-available/kom.conf /etc/nginx/sites-enabled/kom.conf
 
@@ -96,6 +97,10 @@ fi
 
 if $ALL || $ALL_SVCS || [[ "$SVC" = "slackat" ]]; then
     deploy_service "slackat"
+fi
+
+if $ALL || $ALL_SVCS || [[ "$SVC" = "soundlog" ]]; then
+    deploy_service "soundlog"
 fi
 
 if $TAIL; then

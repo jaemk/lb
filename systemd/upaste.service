@@ -1,6 +1,5 @@
 [Unit]
 Description=uPaste App Server
-Requires=nginx.service
 Requires=docker.service
 
 [Service]

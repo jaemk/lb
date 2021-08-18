@@ -1,6 +1,5 @@
 [Unit]
 Description=Badge caching service
-Requires=nginx.service
 Requires=docker.service
 
 [Service]

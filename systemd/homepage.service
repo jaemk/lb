@@ -1,6 +1,5 @@
 [Unit]
 Description=homepage
-Requires=nginx.service
 Requires=docker.service
 
 [Service]
