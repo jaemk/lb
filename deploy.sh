@@ -60,6 +60,7 @@ if $ALL || $LB; then
     sudo cp nginx/kom-dev-ssl-config.conf /etc/nginx/snippets/kom-dev-ssl-config.conf
     sudo cp nginx/slackat-ssl-config.conf /etc/nginx/snippets/slackat-ssl-config.conf
     sudo cp nginx/soundlog-ssl-config.conf /etc/nginx/snippets/soundlog-ssl-config.conf
+    sudo cp nginx/feelsgut-ssl-config.conf /etc/nginx/snippets/feelsgut-ssl-config.conf
     sudo cp nginx/kom.conf /etc/nginx/sites-available/kom.conf
     sudo ln -sf /etc/nginx/sites-available/kom.conf /etc/nginx/sites-enabled/kom.conf
 
