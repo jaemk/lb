@@ -104,6 +104,10 @@ if $ALL || $ALL_SVCS || [[ "$SVC" = "soundlog" ]]; then
     deploy_service "soundlog"
 fi
 
+if $ALL || $ALL_SVCS || [[ "$SVC" = "ritide" ]]; then
+    deploy_service "ritide"
+fi
+
 if $TAIL; then
     ./logs.sh
 fi

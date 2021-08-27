@@ -2,9 +2,9 @@
 
 
 if [[ "$1" = "all" ]]; then
-    sudo journalctl -f -u upaste -u badge -u homepage -u transfer -u slackat -u soundlog
+    sudo journalctl -f -u upaste -u badge -u homepage -u transfer -u slackat -u soundlog -u ritide
 elif [[ -z "$1" ]]; then
-    sudo tail -F -f /var/log/nginx/error.log -f /var/log/nginx/access.log
+    sudo tail -Ff /var/log/nginx/error.log -Ff /var/log/nginx/access.log
 else
     sudo journalctl -fu $1
 fi
