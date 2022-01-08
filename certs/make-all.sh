@@ -13,6 +13,7 @@ if [ "$cmd" = "new" ]; then
         DOMAIN=slackat.com ./certs/make-cert.sh new
         DOMAIN=soundlog.co ./certs/make-cert.sh new
         DOMAIN=feelsgut.com ./certs/make-cert.sh new
+        DOMAIN=didpoop.com ./certs/make-cert.sh new
     else
         DOMAIN="$domain" ./certs/make-cert.sh new
     fi
@@ -24,6 +25,7 @@ elif [ "$cmd" = "renew" ]; then
         DOMAIN=slackat.com ./certs/make-cert.sh renew
         DOMAIN=soundlog.co ./certs/make-cert.sh renew
         DOMAIN=feelsgut.com ./certs/make-cert.sh renew
+        DOMAIN=didpoop.com ./certs/make-cert.sh renew
     else
         DOMAIN="$domain" ./certs/make-cert.sh renew
     fi
