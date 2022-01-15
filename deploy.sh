@@ -113,6 +113,10 @@ if $ALL || $ALL_SVCS || [[ "$SVC" = "outside" ]]; then
     deploy_service "outside"
 fi
 
+if $ALL || $ALL_SVCS || [[ "$SVC" = "ugh" ]]; then
+    deploy_service "ugh"
+fi
+
 if $TAIL; then
     ./logs.sh
 fi

@@ -1,0 +1,20 @@
+[Unit]
+Description=ugh service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStop=/usr/bin/docker stop %n
+ExecStop=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull docker.jaemk.me/ugh:latest
+ExecStart=/usr/bin/docker run --rm --name %n \
+    -p 127.0.0.1:4008:3000 \
+    --env-file /home/james/envs/ugh.env \
+    docker.jaemk.me/ugh:latest
+
+[Install]
+WantedBy=multi-user.target
+
