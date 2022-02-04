@@ -62,6 +62,7 @@ if $ALL || $LB; then
     sudo cp nginx/soundlog-ssl-config.conf /etc/nginx/snippets/soundlog-ssl-config.conf
     sudo cp nginx/feelsgut-ssl-config.conf /etc/nginx/snippets/feelsgut-ssl-config.conf
     sudo cp nginx/didpoop-ssl-config.conf /etc/nginx/snippets/didpoop-ssl-config.conf
+    sudo cp nginx/rehandle-ssl-config.conf /etc/nginx/snippets/rehandle-ssl-config.conf
     sudo cp nginx/kom.conf /etc/nginx/sites-available/kom.conf
     sudo ln -sf /etc/nginx/sites-available/kom.conf /etc/nginx/sites-enabled/kom.conf
 
